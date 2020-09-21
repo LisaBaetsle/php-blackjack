@@ -39,6 +39,7 @@ class Suit
     return new Suit(self::TYPE_CLUB);
   }
 
+  // GETTERS
   public function getName(): string
   {
     return $this->name;
@@ -46,6 +47,7 @@ class Suit
 
   public function getColor(): string
   {
+    // If it's type heart or type diamond: the color is red, else the color is black
     return in_array($this->name, [self::TYPE_HEART, self::TYPE_DIAMOND]) ? 'red' : 'black';
   }
 

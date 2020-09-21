@@ -41,7 +41,7 @@ class Card
     return $this->value;
   }
 
-  public function getUnicodeCharacter(bool $includeColor = false)
+  public function getUnicodeCharacter(bool $includeColor = false) // add a boolean parameter and set  default to false
   {
     $value = '&#' . ($this->suit->getStartValue() + $this->getRawValue()) . ';';
 
