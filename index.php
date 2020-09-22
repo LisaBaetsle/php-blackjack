@@ -19,7 +19,9 @@
     <p>These are your cards:</p>
     <p style="font-size:200px;"> <?php foreach ($blackjack->getPlayer()->getCards() as $card) {
                                     echo $card->getUnicodeCharacter(true);
-                                  } ?> </p>
+                                  } ?>
+    </p>
+    <p> The sum is <?php echo $blackjack->getPlayer()->getScore(); ?> </p>
   </div>
 
   <form method="post">
