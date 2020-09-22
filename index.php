@@ -12,6 +12,10 @@
   <?php
   require 'Blackjack.php';
   $blackjack = new Blackjack();
+
+  if (isset($_POST["hit"])) {
+    $blackjack->getPlayer()->Hit($blackjack->getDeck());
+  };
   ?>
 
   <div class="player">
@@ -31,6 +35,11 @@
   </form>
 
   <?php
+
+
+
+  print_r($blackjack->getPlayer()->getCards());
+
   var_dump($_POST);
   ?>
 

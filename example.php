@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-require 'Suit.php';
-require 'Card.php';
-require 'Deck.php';
+// require 'Suit.php';
+// require 'Card.php';
+// require 'Deck.php';
 require 'Blackjack.php';
 
 $deck = new Deck(); // This function makes an array of all the different card possibilities
