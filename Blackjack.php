@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 require 'Player.php';
+require 'Dealer.php';
 
 class Blackjack
 {
   private Player $player;
-  private $dealer;
+  private Dealer $dealer;
   private $deck;
 
   public function __construct()
@@ -16,7 +17,7 @@ class Blackjack
     $this->deck->shuffle();
 
     $this->player = new Player($this->deck);
-    $this->dealer = new Player($this->deck);
+    $this->dealer = new Dealer($this->deck);
   }
 
   public function getPlayer(): Player
@@ -24,7 +25,8 @@ class Blackjack
     return $this->player;
   }
 
-  public function getDealer(): void
+  public function getDealer(): Dealer
   {
+    return $this->Dealer;
   }
 };

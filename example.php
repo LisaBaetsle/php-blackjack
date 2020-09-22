@@ -13,14 +13,42 @@ $deck->shuffle(); // This function shuffles all the cards of the deck
 // print_r($deck);
 
 
-print_r($deck->drawCard());
+// print_r($deck->drawCard());
 
-foreach ($deck->getCards() as $card) { // It's best practice to use the getter, it gives the array of the shuffled cards
+/* foreach ($deck->getCards() as $card) { // It's best practice to use the getter, it gives the array of the shuffled cards
+  // print_r($card);
+  echo $card->getUnicodeCharacter(true);
+  echo '<br>';
+  var_dump($card);
+} */
+
+$blackjack = new Blackjack();
+// print_r($blackjack->getPlayer());
+
+// $player = new Player($deck);
+print_r($blackjack->getPlayer());
+echo '<br>';
+echo '<br>';
+// $player->Hit($deck);
+$blackjack->getPlayer()->Hit($deck);
+print_r($blackjack->getPlayer()->getCards());
+// print_r($player);
+echo '<br>';
+echo '<br>';
+// echo $card->getValue();
+/* $sum = 0;
+foreach ($blackjack->getPlayer()->getCards() as $card) {
+  $sum = $sum + $card->getValue();
+}
+echo $sum; */
+
+foreach ($blackjack->getPlayer()->getCards() as $card) {
   // print_r($card);
   echo $card->getUnicodeCharacter(true);
   echo '<br>';
   var_dump($card);
 }
 
-$blackjack = new Blackjack();
-print_r($blackjack->getPlayer());
+
+$blackjack->getPlayer()->getScore();
+print_r($blackjack->getPlayer()->getCards());
