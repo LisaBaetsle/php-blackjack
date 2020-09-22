@@ -51,4 +51,4 @@ foreach ($blackjack->getPlayer()->getCards() as $card) {
 
 
 $blackjack->getPlayer()->getScore();
-print_r($blackjack->getPlayer()->getCards());
+print_r($blackjack->getPlayer()->getScore());

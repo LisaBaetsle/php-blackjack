@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 require 'Player.php';
 require 'Dealer.php';
+require 'Suit.php';
+require 'Card.php';
+require 'Deck.php';
 
 class Blackjack
 {

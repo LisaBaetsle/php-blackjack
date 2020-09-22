@@ -4,10 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
   <title>Blackjack</title>
 </head>
 
 <body>
+  <?php
+  require 'Blackjack.php';
+  $blackjack = new Blackjack();
+  ?>
+
+  <div class="player">
+    <h1>Player</h1>
+    <p>These are your cards:</p>
+    <p style="font-size:200px;"> <?php foreach ($blackjack->getPlayer()->getCards() as $card) {
+                                    echo $card->getUnicodeCharacter(true);
+                                  } ?> </p>
+  </div>
+
   <form method="post">
     <button type="submit" id="hit" name="hit" value="hit">Hit me!</button>
     <button type="submit" id="stand" name="stand" value="stand">Stand</button>
