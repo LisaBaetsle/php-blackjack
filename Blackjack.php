@@ -30,7 +30,7 @@ class Blackjack
 
   public function getDealer(): Dealer
   {
-    return $this->Dealer;
+    return $this->dealer;
   }
 
   public function getDeck(): Deck

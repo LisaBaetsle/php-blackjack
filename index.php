@@ -16,23 +16,44 @@
   if (isset($_POST["hit"])) {
     $blackjack->getPlayer()->Hit($blackjack->getDeck());
   };
+
+  if (isset($_POST["stand"])) {
+    $blackjack->getDealer()->Hit($blackjack->getDeck());
+  };
   ?>
 
-  <div class="player">
-    <h1>Player</h1>
-    <p>These are your cards:</p>
-    <p style="font-size:200px;"> <?php foreach ($blackjack->getPlayer()->getCards() as $card) {
-                                    echo $card->getUnicodeCharacter(true);
-                                  } ?>
-    </p>
-    <p> The sum is <?php echo $blackjack->getPlayer()->getScore(); ?> </p>
-  </div>
+  <div class="container">
+    <div class="row">
+      <div class="player col-md-6">
+        <h1>Player</h1>
+        <p>These are your cards:</p>
+        <p style="font-size:200px;"> <?php foreach ($blackjack->getPlayer()->getCards() as $card) {
+                                        echo $card->getUnicodeCharacter(true);
+                                      } ?>
+        </p>
+        <p> The sum is <?php echo $blackjack->getPlayer()->getScore(); ?> </p>
+        <p> You have lost = <?php echo $blackjack->getPlayer()->hasLost(); ?> </p>
+      </div>
 
-  <form method="post">
-    <button type="submit" id="hit" name="hit" value="hit">Hit me!</button>
-    <button type="submit" id="stand" name="stand" value="stand">Stand</button>
-    <button type="submit" id="surrender" name="surrender" value="surrender">Surrender</button>
-  </form>
+      <div class="computer col-md-6">
+        <h1>Dealer</h1>
+        <p>These are the dealer's cards:</p>
+        <p style="font-size:200px;"> <?php foreach ($blackjack->getDealer()->getCards() as $card) {
+                                        echo $card->getUnicodeCharacter(true);
+                                      } ?>
+        </p>
+        <p> The sum is <?php echo $blackjack->getDealer()->getScore(); ?> </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <form method="post">
+        <button type="submit" id="hit" name="hit" value="hit">Hit me!</button>
+        <button type="submit" id="stand" name="stand" value="stand">Stand</button>
+        <button type="submit" id="surrender" name="surrender" value="surrender">Surrender</button>
+      </form>
+    </div>
+  </div>
 
   <?php
 
@@ -41,6 +62,7 @@
   print_r($blackjack->getPlayer()->getCards());
 
   var_dump($_POST);
+  var_dump($blackjack->getDealer());
   ?>
 
 </body>
