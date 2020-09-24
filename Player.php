@@ -4,54 +4,49 @@ declare(strict_types=1);
 
 class Player
 {
-  private array $cards;
+  protected array $cards = [];
   private bool $lost = false;
 
+  // CONSTRUCTOR
   function __construct(Deck $deck)
   {
-    $playerCardOne = $deck->drawCard();
-    $playerCardTwo = $deck->drawCard();
-
-    $this->cards = [$playerCardOne, $playerCardTwo];
+    array_push($this->cards, $deck->drawCard());
+    array_push($this->cards, $deck->drawCard());
   }
 
-  //GETTER
-  public function getCards()
+  // GETTER
+  public function getCards(): array
   {
     return $this->cards;
   }
 
-  public function Hit(Deck $deck)
+  // CALCULATE SCORE
+  public function calcScore()
   {
-    $playerCardThree = $deck->drawCard();
-    array_push($this->cards, $playerCardThree);
-
     $sum = 0;
     foreach ($this->cards as $card) {
       $sum = $sum + $card->getValue();
     }
-    // echo $sum;
-
-    if ($sum > 21) {
-      $this->lost = true;
-    }
+    return $sum;
   }
 
+  // HIT
+  public function Hit(Deck $deck)
+  {
+    /* if ($this->calcScore() > 21) {
+      $this->lost = true;
+    } else { */
+    array_push($this->cards, $deck->drawCard());
+    //}
+  }
+
+  //SURRENDER
   public function Surrender(): bool
   {
     return $this->lost = true;
   }
 
-  public function getScore(): int
-  {
-    $totalSum = 0;
-    foreach ($this->cards as $card) {
-      $totalSum = $totalSum + $card->getValue();
-    }
-
-    return $totalSum;
-  }
-
+  //HAS LOST
   public function hasLost(): bool
   {
     return $this->lost;

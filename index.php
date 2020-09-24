@@ -1,70 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-  <title>Blackjack</title>
-</head>
+declare(strict_types=1);
 
-<body>
-  <?php
-  require 'Blackjack.php';
-  $blackjack = new Blackjack();
+// START SESSION
+session_start();
+// session_unset();
 
-  if (isset($_POST["hit"])) {
-    $blackjack->getPlayer()->Hit($blackjack->getDeck());
-  };
+// REQUIRES
+require 'Suit.php';
+require 'Card.php';
+require 'Deck.php';
+require 'Player.php';
+require 'Dealer.php';
+require 'Blackjack.php';
 
-  if (isset($_POST["stand"])) {
-    $blackjack->getDealer()->Hit($blackjack->getDeck());
-  };
-  ?>
-
-  <div class="container">
-    <div class="row">
-      <div class="player col-md-6">
-        <h1>Player</h1>
-        <p>These are your cards:</p>
-        <p style="font-size:200px;"> <?php foreach ($blackjack->getPlayer()->getCards() as $card) {
-                                        echo $card->getUnicodeCharacter(true);
-                                      } ?>
-        </p>
-        <p> The sum is <?php echo $blackjack->getPlayer()->getScore(); ?> </p>
-        <p> You have lost = <?php echo $blackjack->getPlayer()->hasLost(); ?> </p>
-      </div>
-
-      <div class="computer col-md-6">
-        <h1>Dealer</h1>
-        <p>These are the dealer's cards:</p>
-        <p style="font-size:200px;"> <?php foreach ($blackjack->getDealer()->getCards() as $card) {
-                                        echo $card->getUnicodeCharacter(true);
-                                      } ?>
-        </p>
-        <p> The sum is <?php echo $blackjack->getDealer()->getScore(); ?> </p>
-      </div>
-    </div>
-
-    <div class="row">
-      <form method="post">
-        <button type="submit" id="hit" name="hit" value="hit">Hit me!</button>
-        <button type="submit" id="stand" name="stand" value="stand">Stand</button>
-        <button type="submit" id="surrender" name="surrender" value="surrender">Surrender</button>
-      </form>
-    </div>
-  </div>
-
-  <?php
+if (isset($_POST['start'])) {
+  // RESET
+  unset($blackjack);
+  session_unset();
+}
 
 
+// CHECK IF THERE IS A SESSION FOR BLACKJACK, AND MAKE THE VARIABLE $BLACKJACK
+if (!isset($_SESSION['blackjack'])) {
+  $blackjack = new Blackjack;
+  $_SESSION['blackjack'] = serialize($blackjack);
+} else {
+  $blackjack = unserialize($_SESSION['blackjack']);
+}
 
-  print_r($blackjack->getPlayer()->getCards());
+// WHEN THE PLAYER PRESSES HIT
+if (isset($_POST["hit"])) {
+  $blackjack->getPlayer()->Hit($blackjack->getDeck());
+  $_SESSION['blackjack'] = serialize($blackjack);
+};
 
-  var_dump($_POST);
-  var_dump($blackjack->getDealer());
-  ?>
+/* $blackjack = new Blackjack;
+$blackjack->getPlayer()->Hit($blackjack->getDeck());
+$blackjack->getPlayer()->Hit($blackjack->getDeck());
+$blackjack->getPlayer()->Hit($blackjack->getDeck());*/
 
-</body>
+var_dump($blackjack);
+var_dump($_POST);
+var_dump($_SESSION);
 
-</html>
+require 'view.php';

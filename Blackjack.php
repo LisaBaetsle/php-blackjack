@@ -2,17 +2,13 @@
 
 declare(strict_types=1);
 
-require 'Player.php';
-require 'Dealer.php';
-require 'Suit.php';
-require 'Card.php';
-require 'Deck.php';
+// Waarom hier geen require voor deck??
 
 class Blackjack
 {
-  private Player $player;
-  private Dealer $dealer;
-  private Deck $deck;
+  private $player;
+  private $dealer;
+  private $deck;
 
   public function __construct()
   {
