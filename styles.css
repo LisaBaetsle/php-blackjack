@@ -1,0 +1,23 @@
+body {
+  background-color: azure;
+  margin-left: auto;
+}
+
+.game {
+  width: 70%;
+  margin: auto;
+}
+
+.container-player {
+  text-align: center;
+}
+
+.container-computer {
+  text-align: center;
+}
+
+.cards {
+  font-size: 150px;
+  margin-top: -50px;
+  margin-bottom: 0px;
+}

@@ -42,8 +42,10 @@ class Blackjack
       return 'Yay, you win!';
     } else if ($this->dealer->calcScore() >= $this->player->calcScore()) {
       return 'You lose, the dealer wins';
-    } else {
+    } else if ($this->dealer->calcScore() < $this->player->calcScore()) {
       return 'Yay, you win!';
+    } else {
+      return 'You\'re still in the game';
     }
   }
 };
