@@ -20,7 +20,6 @@ if (isset($_POST['start'])) {
   session_unset();
 }
 
-
 // CHECK IF THERE IS A SESSION FOR BLACKJACK, AND MAKE THE VARIABLE $BLACKJACK
 if (!isset($_SESSION['blackjack'])) {
   $blackjack = new Blackjack;
@@ -35,13 +34,17 @@ if (isset($_POST["hit"])) {
   $_SESSION['blackjack'] = serialize($blackjack);
 };
 
-/* $blackjack = new Blackjack;
-$blackjack->getPlayer()->Hit($blackjack->getDeck());
-$blackjack->getPlayer()->Hit($blackjack->getDeck());
-$blackjack->getPlayer()->Hit($blackjack->getDeck());*/
+// WHEN THE PLAYER PRESSES STAND
+if (isset($_POST['stand'])) {
+  $blackjack->getDealer()->Hit($blackjack->getDeck());
+  $_SESSION['blackjack'] = serialize($blackjack);
+}
 
-var_dump($blackjack);
-var_dump($_POST);
-var_dump($_SESSION);
+// WHEN THE PLAYER SURRENDERS
+if (isset($_POST['surrender'])) {
+  $blackjack->getPlayer()->Surrender();
+  $_SESSION['blackjack'] = serialize($blackjack);
+}
+
 
 require 'view.php';

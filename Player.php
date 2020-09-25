@@ -33,11 +33,14 @@ class Player
   // HIT
   public function Hit(Deck $deck)
   {
-    /* if ($this->calcScore() > 21) {
+    if ($this->calcScore() > 21) {
       $this->lost = true;
-    } else { */
-    array_push($this->cards, $deck->drawCard());
-    //}
+    } else {
+      array_push($this->cards, $deck->drawCard());
+      if ($this->calcScore() > 21) {
+        $this->lost = true;
+      }
+    }
   }
 
   //SURRENDER
@@ -50,5 +53,14 @@ class Player
   public function hasLost(): bool
   {
     return $this->lost;
+  }
+
+  //SHOW CARDS
+  public function showCards(): void
+  {
+    // echo cards in unicode format
+    foreach ($this->cards as $card) {
+      echo $card->getUnicodeCharacter(true);
+    }
   }
 };

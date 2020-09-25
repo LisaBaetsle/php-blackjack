@@ -14,7 +14,7 @@ class Dealer extends Player
   public function Hit(Deck $deck)
   {
     // dealer stops drawing cards if total > 15
-    if ($this->calcScore() <= 15) {
+    while ($this->calcScore() <= 15) {
       parent::Hit($deck);
     }
   }
