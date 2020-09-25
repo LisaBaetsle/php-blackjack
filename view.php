@@ -31,13 +31,13 @@
 
     <div class="container-result">
       <div class="row justify-content-md-center">
-        <p> <?= $winner ?> </p>
+        <p id="result"> <?= $winner ?> </p>
       </div>
 
     </div>
 
     <div class="container-player">
-      <h1>Player</h1>
+      <p class="player">Player</p>
       <p class="cards"> <?= $blackjack->getPlayer()->showCards(); ?>
       </p>
       <p> The sum is <?= $blackjack->getPlayer()->calcScore(); ?> </p>
@@ -45,7 +45,7 @@
 
 
     <div class="container-computer">
-      <h1>Dealer</h1>
+      <p class="player">Dealer</p>
       <p class="cards"> <?= $blackjack->getDealer()->showCards(); ?>
       </p>
       <p> The sum is <?= $blackjack->getDealer()->calcScore(); ?> </p>

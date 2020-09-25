@@ -1,11 +1,18 @@
 body {
   background-color: azure;
-  margin-left: auto;
+  margin-top: 70px;
+}
+
+h1 {
+  padding-bottom: 30px;
 }
 
 .game {
   width: 70%;
   margin: auto;
+}
+.container-result {
+  margin-top: 40px;
 }
 
 .container-player {
@@ -20,4 +27,13 @@ body {
   font-size: 150px;
   margin-top: -50px;
   margin-bottom: 0px;
+}
+
+.player {
+  font-size: 30px;
+}
+
+#result {
+  text-transform: uppercase;
+  font-size: 40px;
 }
