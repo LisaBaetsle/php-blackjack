@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 // START SESSION
 session_start();
-// session_unset();
 
 // REQUIRES
 require 'Suit.php';
@@ -14,13 +13,13 @@ require 'Player.php';
 require 'Dealer.php';
 require 'Blackjack.php';
 
+// RESET THE SESSIONS AND THE OBJECT blackjack WHEN PLAYER PRESSES START
 if (isset($_POST['start'])) {
-  // RESET
   unset($blackjack);
   session_unset();
 }
 
-// CHECK IF THERE IS A SESSION FOR BLACKJACK, AND MAKE THE VARIABLE $BLACKJACK
+// CHECK IF THERE IS A SESSION FOR BLACKJACK, AND MAKE THE OBJECT $BLACKJACK
 if (!isset($_SESSION['blackjack'])) {
   $blackjack = new Blackjack;
   $_SESSION['blackjack'] = serialize($blackjack);
@@ -32,18 +31,23 @@ if (!isset($_SESSION['blackjack'])) {
 if (isset($_POST["hit"])) {
   $blackjack->getPlayer()->Hit($blackjack->getDeck());
   $_SESSION['blackjack'] = serialize($blackjack);
+  if ($blackjack->getPlayer()->calcScore() > 21) {
+    echo $blackjack->theWinner();
+  }
 };
 
 // WHEN THE PLAYER PRESSES STAND
 if (isset($_POST['stand'])) {
   $blackjack->getDealer()->Hit($blackjack->getDeck());
   $_SESSION['blackjack'] = serialize($blackjack);
+  echo $blackjack->theWinner();
 }
 
 // WHEN THE PLAYER SURRENDERS
 if (isset($_POST['surrender'])) {
   $blackjack->getPlayer()->Surrender();
   $_SESSION['blackjack'] = serialize($blackjack);
+  echo $blackjack->theWinner();
 }
 
 

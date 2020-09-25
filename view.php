@@ -29,6 +29,7 @@
         <p style="font-size:200px;"> <?= $blackjack->getDealer()->showCards(); ?>
         </p>
         <p> The sum is <?= $blackjack->getDealer()->calcScore(); ?> </p>
+        <p> You have lost = <?= $blackjack->getDealer()->hasLost(); ?> </p>
       </div>
     </div>
 

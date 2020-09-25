@@ -33,4 +33,17 @@ class Blackjack
   {
     return $this->deck;
   }
+
+  public function theWinner()
+  {
+    if ($this->player->hasLost()) {
+      return 'You lose, the dealer wins';
+    } else if ($this->dealer->hasLost()) {
+      return 'Yay, you win!';
+    } else if ($this->dealer->calcScore() >= $this->player->calcScore()) {
+      return 'You lose, the dealer wins';
+    } else {
+      return 'Yay, you win!';
+    }
+  }
 };
